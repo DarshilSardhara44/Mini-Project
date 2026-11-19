@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>StudentHub - Student Portal</title>
 
+<!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
+
+/* GENERAL DESIGN */
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: #f4f7fb;
 }
+
+/* NAVBAR */
 
 .navbar {
     background: #123c69;
@@ -24,27 +33,28 @@ body {
     font-weight: bold;
 }
 
-.login-screen {
-    min-height: 100vh;
+/* WELCOME SECTION */
+
+.welcome-screen {
+    min-height: 55vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(135deg, #123c69, #2874a6);
+    color: white;
+    text-align: center;
 }
 
-.login-box {
+.welcome-box {
     background: white;
+    color: #123c69;
+    padding: 35px;
     width: 350px;
-    padding: 30px;
     border-radius: 12px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
 
-.login-box h2 {
-    color: #123c69;
-    text-align: center;
-    margin-bottom: 25px;
-}
+/* SIDEBAR */
 
 .sidebar {
     background: white;
@@ -53,32 +63,24 @@ body {
     box-shadow: 2px 0 8px rgba(0,0,0,0.05);
 }
 
-.sidebar button {
-    width: 100%;
-    text-align: left;
-    margin-bottom: 8px;
-    background: white;
-    border: none;
+.sidebar a {
+    display: block;
+    text-decoration: none;
+    color: #333;
     padding: 12px;
+    margin-bottom: 8px;
     border-radius: 6px;
 }
 
-.sidebar button:hover,
-.sidebar button.active {
+.sidebar a:hover {
     background: #dcecff;
     color: #123c69;
 }
 
+/* MAIN CONTENT */
+
 .main-content {
     padding: 25px;
-}
-
-.page {
-    display: none;
-}
-
-.page.active {
-    display: block;
 }
 
 .card-box {
@@ -113,160 +115,226 @@ h3 {
     margin-bottom: 20px;
 }
 
+/* SECTION SPACING */
+
+.section {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    scroll-margin-top: 75px;
+}
+
+/* FOOTER */
+
 footer {
     text-align: center;
     padding: 15px;
     color: #777;
+    background: white;
 }
 
+/* MOBILE RESPONSIVE */
+
 @media(max-width: 768px) {
+
     .sidebar {
         min-height: auto;
     }
+
+    .welcome-box {
+        width: 90%;
+    }
+
 }
+
 </style>
+
 </head>
 
 <body>
 
-<!-- LOGIN SCREEN -->
-<div class="login-screen" id="loginScreen">
-
-    <div class="login-box">
-        <h2>StudentHub</h2>
-        <p class="text-center text-muted">Student Management Portal</p>
-
-        <form onsubmit="login(event)">
-
-            <div class="mb-3">
-                <label class="form-label">Roll Number</label>
-                <input type="text" id="loginRoll" class="form-control"
-                placeholder="Enter your roll number" required>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Password</label>
-                <input type="password" id="loginPassword" class="form-control"
-                placeholder="Enter any password" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary w-100">
-                Login
-            </button>
-
-        </form>
-
-        <p class="text-center mt-3 text-muted">
-            Demo: Any roll number and password
-        </p>
-    </div>
-
-</div>
-
-<!-- MAIN WEBSITE -->
-<div id="mainWebsite" style="display:none;">
+<!-- NAVBAR -->
 
 <nav class="navbar navbar-expand-lg px-4">
 
-    <a class="navbar-brand" href="#">StudentHub</a>
+    <a class="navbar-brand" href="#home">StudentHub</a>
 
-    <div class="ms-auto">
-        <span class="text-white me-3" id="topRoll"></span>
-        <button class="btn btn-light btn-sm" onclick="logout()">
-            Logout
-        </button>
-    </div>
+    <span class="text-white ms-auto">
+        Student Management Portal
+    </span>
 
 </nav>
 
-<div class="container-fluid">
-<div class="row">
 
-<!-- SIDEBAR -->
-<div class="col-md-2 sidebar">
+<!-- WELCOME SCREEN -->
 
-    <button class="active" onclick="showPage('home',this)">🏠 Dashboard</button>
-    <button onclick="showPage('profile',this)">👤 My Profile</button>
-    <button onclick="showPage('attendance',this)">📊 Attendance</button>
-    <button onclick="showPage('results',this)">📚 Results</button>
-    <button onclick="showPage('assignments',this)">📝 Assignments</button>
-    <button onclick="showPage('timetable',this)">📅 Timetable</button>
-    <button onclick="showPage('materials',this)">📖 Study Materials</button>
-    <button onclick="showPage('events',this)">🎉 College Events</button>
-    <button onclick="showPage('notices',this)">📢 Notices</button>
-    <button onclick="showPage('contact',this)">☎ Contact Us</button>
+<div class="welcome-screen">
+
+    <div class="welcome-box">
+
+        <h2>Welcome to StudentHub!</h2>
+
+        <p>Student Management Portal</p>
+
+        <p>
+            Access your academic information,
+            attendance, results and college updates.
+        </p>
+
+        <a href="#home" class="btn btn-primary w-100">
+            Enter Student Portal
+        </a>
+
+    </div>
 
 </div>
 
+
+<!-- MAIN WEBSITE -->
+
+<div class="container-fluid">
+
+<div class="row">
+
+
+<!-- SIDEBAR -->
+
+<div class="col-md-2 sidebar">
+
+    <h5 class="text-primary text-center mb-4">
+        Student Menu
+    </h5>
+
+    <a href="#home">🏠 Dashboard</a>
+
+    <a href="#profile">👤 My Profile</a>
+
+    <a href="#attendance">📊 Attendance</a>
+
+    <a href="#results">📚 Results</a>
+
+    <a href="#assignments">📝 Assignments</a>
+
+    <a href="#timetable">📅 Timetable</a>
+
+    <a href="#materials">📖 Study Materials</a>
+
+    <a href="#events">🎉 College Events</a>
+
+    <a href="#notices">📢 Notices</a>
+
+    <a href="#contact">☎ Contact Us</a>
+
+</div>
+
+
 <!-- MAIN CONTENT -->
+
 <div class="col-md-10 main-content">
 
+
 <!-- DASHBOARD -->
-<div id="home" class="page active">
 
-    <h3>Welcome to StudentHub!</h3>
+<div id="home" class="section">
 
-    <p>Hello, <b id="welcomeName">Student</b>.</p>
+    <h3>Dashboard</h3>
+
+    <p>Welcome, Student!</p>
 
     <div class="row">
 
         <div class="col-md-4">
+
             <div class="card-box">
+
                 <h5>Attendance</h5>
+
                 <div class="stat-number">85%</div>
+
                 <p class="text-muted">Sample attendance</p>
+
             </div>
+
         </div>
 
+
         <div class="col-md-4">
+
             <div class="card-box">
+
                 <h5>CGPA</h5>
+
                 <div class="stat-number">8.5</div>
+
                 <p class="text-muted">Sample CGPA</p>
+
             </div>
+
         </div>
 
+
         <div class="col-md-4">
+
             <div class="card-box">
+
                 <h5>Assignments</h5>
-                <div class="stat-number" id="assignmentCount">3</div>
-                <p class="text-muted">Sample assignments</p>
+
+                <div class="stat-number">3</div>
+
+                <p class="text-muted">Pending assignments</p>
+
             </div>
+
         </div>
 
     </div>
 
+
     <div class="card-box">
+
         <h5>About StudentHub</h5>
+
         <p>
-            StudentHub is a student management portal designed to help
-            students access their profile, attendance, results, assignments,
-            timetable and college updates in one place.
+            StudentHub is a student management portal
+            designed to help students access their profile,
+            attendance, results, assignments, timetable
+            and college updates in one place.
         </p>
+
     </div>
 
 </div>
 
-<div id="profile" class="page">
+
+<!-- PROFILE -->
+
+<div id="profile" class="section">
 
     <h3>My Profile</h3>
 
     <div class="card-box">
 
-        <div class="profile-circle" id="profileInitial">S</div>
+        <div class="profile-circle">S</div>
 
-        <p><b>Name:</b> <span id="profileName">Student</span></p>
-        <p><b>Roll Number:</b> <span id="profileRoll"></span></p>
+        <p><b>Name:</b> Student</p>
+
+        <p><b>Roll Number:</b> 12345</p>
+
         <p><b>College:</b> Ramdeobaba University</p>
+
         <p><b>Branch:</b> Computer Science Engineering</p>
+
         <p><b>Year:</b> First Year</p>
+
         <p><b>Division:</b> A6 / B2</p>
 
     </div>
 
 </div>
 
-<div id="attendance" class="page">
+
+<!-- ATTENDANCE -->
+
+<div id="attendance" class="section">
 
     <h3>My Attendance</h3>
 
@@ -275,27 +343,49 @@ footer {
         <h5>Subject-wise Attendance</h5>
 
         <p>Mathematics</p>
+
         <div class="progress mb-3">
-            <div class="progress-bar" style="width:85%">85%</div>
+
+            <div class="progress-bar" style="width:85%">
+                85%
+            </div>
+
         </div>
+
 
         <p>Physics</p>
+
         <div class="progress mb-3">
-            <div class="progress-bar bg-success" style="width:90%">90%</div>
+
+            <div class="progress-bar bg-success" style="width:90%">
+                90%
+            </div>
+
         </div>
+
 
         <p>Programming</p>
+
         <div class="progress mb-3">
-            <div class="progress-bar bg-warning" style="width:75%">75%</div>
+
+            <div class="progress-bar bg-warning" style="width:75%">
+                75%
+            </div>
+
         </div>
 
-        <p class="text-muted">These are sample attendance figures.</p>
+        <p class="text-muted">
+            These are sample attendance figures.
+        </p>
 
     </div>
 
 </div>
 
-<div id="results" class="page">
+
+<!-- RESULTS -->
+
+<div id="results" class="section">
 
     <h3>My Results</h3>
 
@@ -304,14 +394,17 @@ footer {
         <table class="table table-bordered">
 
             <thead class="table-primary">
+
                 <tr>
                     <th>Subject</th>
                     <th>Marks</th>
                     <th>Grade</th>
                 </tr>
+
             </thead>
 
             <tbody>
+
                 <tr>
                     <td>Mathematics</td>
                     <td>85</td>
@@ -329,51 +422,48 @@ footer {
                     <td>90</td>
                     <td>O</td>
                 </tr>
+
             </tbody>
 
         </table>
 
-        <p class="text-muted">These are sample marks, not official results.</p>
+        <p class="text-muted">
+            These are sample marks, not official results.
+        </p>
 
     </div>
 
 </div>
 
-<div id="assignments" class="page">
+
+<!-- ASSIGNMENTS -->
+
+<div id="assignments" class="section">
 
     <h3>Assignments</h3>
 
     <div class="card-box">
 
-        <form onsubmit="addAssignment(event)">
-
-            <div class="mb-3">
-                <label class="form-label">Assignment Name</label>
-                <input type="text" id="assignmentInput"
-                class="form-control" placeholder="Enter assignment name" required>
-            </div>
-
-            <button class="btn btn-primary">Add Assignment</button>
-
-        </form>
-
-    </div>
-
-    <div class="card-box">
-
         <h5>Assignment List</h5>
 
-        <ul id="assignmentList">
+        <ul>
+
             <li>Mathematics Assignment</li>
+
             <li>Physics Assignment</li>
+
             <li>Programming Assignment</li>
+
         </ul>
 
     </div>
 
 </div>
 
-<div id="timetable" class="page">
+
+<!-- TIMETABLE -->
+
+<div id="timetable" class="section">
 
     <h3>Class Timetable</h3>
 
@@ -382,287 +472,252 @@ footer {
         <table class="table table-bordered">
 
             <tr class="table-primary">
+
                 <th>Day</th>
+
                 <th>Subject</th>
+
                 <th>Time</th>
+
             </tr>
 
             <tr>
+
                 <td>Monday</td>
+
                 <td>Mathematics</td>
+
                 <td>10:00 AM</td>
+
             </tr>
 
             <tr>
+
                 <td>Tuesday</td>
+
                 <td>Physics</td>
+
                 <td>11:00 AM</td>
+
             </tr>
 
             <tr>
+
                 <td>Wednesday</td>
+
                 <td>Programming</td>
+
                 <td>12:00 PM</td>
+
             </tr>
 
             <tr>
+
                 <td>Thursday</td>
+
                 <td>English</td>
+
                 <td>10:00 AM</td>
+
             </tr>
 
             <tr>
+
                 <td>Friday</td>
+
                 <td>Computer Science</td>
+
                 <td>11:00 AM</td>
+
             </tr>
 
         </table>
 
-        <p class="text-muted">Sample timetable.</p>
-
     </div>
 
 </div>
 
-<div id="materials" class="page">
+
+<!-- STUDY MATERIALS -->
+
+<div id="materials" class="section">
 
     <h3>Study Materials</h3>
 
     <div class="card-box">
+
         <h5>Mathematics Notes</h5>
+
         <p>Study material for Mathematics.</p>
+
     </div>
 
+
     <div class="card-box">
+
         <h5>Physics Notes</h5>
+
         <p>Study material for Physics.</p>
+
     </div>
 
+
     <div class="card-box">
+
         <h5>Programming Notes</h5>
+
         <p>Study material for Programming.</p>
+
     </div>
 
 </div>
 
-<div id="events" class="page">
+
+<!-- COLLEGE EVENTS -->
+
+<div id="events" class="section">
 
     <h3>College Events</h3>
 
     <div class="card-box">
+
         <h5>Technical Fest</h5>
-        <p>Participate in technical activities and competitions.</p>
+
+        <p>
+            Participate in technical activities
+            and competitions.
+        </p>
+
     </div>
 
+
     <div class="card-box">
+
         <h5>Sports Day</h5>
-        <p>Take part in different sports activities.</p>
+
+        <p>
+            Take part in different sports activities.
+        </p>
+
     </div>
 
+
     <div class="card-box">
+
         <h5>Cultural Fest</h5>
-        <p>Enjoy cultural programs and performances.</p>
+
+        <p>
+            Enjoy cultural programs and performances.
+        </p>
+
     </div>
 
 </div>
 
-<div id="notices" class="page">
+
+<!-- NOTICES -->
+
+<div id="notices" class="section">
 
     <h3>Notices</h3>
 
     <div class="card-box">
-        <p>📢 Students are requested to check their assignment submissions.</p>
+
+        <p>
+            📢 Students are requested to check
+            their assignment submissions.
+        </p>
+
         <hr>
-        <p>📢 Check the examination timetable regularly.</p>
+
+        <p>
+            📢 Check the examination timetable regularly.
+        </p>
+
         <hr>
-        <p>📢 Participate in upcoming college events.</p>
+
+        <p>
+            📢 Participate in upcoming college events.
+        </p>
+
     </div>
 
 </div>
 
-<!-- CONTACT -->
-<div id="contact" class="page">
+
+<!-- CONTACT US -->
+
+<div id="contact" class="section">
 
     <h3>Contact Us</h3>
 
     <div class="card-box">
 
-        <form onsubmit="sendMessage(event)">
+        <form>
 
             <div class="mb-3">
+
                 <label class="form-label">Your Name</label>
-                <input type="text" class="form-control" required>
+
+                <input type="text"
+                class="form-control"
+                placeholder="Enter your name">
+
             </div>
 
+
             <div class="mb-3">
+
                 <label class="form-label">Email</label>
-                <input type="email" class="form-control" required>
+
+                <input type="email"
+                class="form-control"
+                placeholder="Enter your email">
+
             </div>
+
 
             <div class="mb-3">
+
                 <label class="form-label">Message</label>
-                <textarea class="form-control" rows="4" required></textarea>
+
+                <textarea class="form-control"
+                rows="4"
+                placeholder="Enter your message"></textarea>
+
             </div>
 
-            <button class="btn btn-primary">Send Message</button>
+
+            <button type="button" class="btn btn-primary">
+                Submit
+            </button>
 
         </form>
+
+        <p class="text-muted mt-3">
+            This is a demonstration contact form.
+        </p>
 
     </div>
 
 </div>
 
+
+<!-- FOOTER -->
+
 <footer>
+
     © 2026 StudentHub | Student Management Portal
+
 </footer>
 
-</div>
-</div>
-</div>
+
 </div>
 
-<script>
+</div>
 
-const studentNames = [
-    "Rahul Sharma",
-    "Anubhav Singh",
-    "Aarav Patel",
-    "Rohan Verma",
-    "Aditya Gupta",
-    "Priya Sharma",
-    "Sneha Patil",
-    "Karan Mehta",
-    "Ishita Jain",
-    "Aryan Deshmukh",
-    "Neha Singh",
-    "Sahil Kumar",
-    "Tanvi Joshi",
-    "Vivek Yadav",
-    "Kavya Shah",
-    "Harsh Agarwal",
-    "Pooja Mishra",
-    "Yash Thakur",
-    "Aditi Kulkarni",
-    "Omkar Pawar",
-    "Riya Gupta",
-    "Akash Sharma",
-    "Sakshi More",
-    "Rohit Jadhav",
-    "Meera Joshi",
-    "Nikhil Patil",
-    "Simran Kaur",
-    "Dev Shah",
-    "Ananya Desai",
-    "Manav Jain"
-];
-
-function login(event) {
-
-    event.preventDefault();
-
-    let rollNo = document.getElementById("loginRoll").value.trim();
-    let password = document.getElementById("loginPassword").value.trim();
-
-    if (rollNo === "" || password === "") {
-        alert("Please enter Roll Number and Password!");
-        return;
-    }
-
-    let randomIndex = Math.floor(Math.random() * studentNames.length);
-    let studentName = studentNames[randomIndex];
-
-    document.getElementById("loginScreen").style.display = "none";
-    document.getElementById("mainWebsite").style.display = "block";
-
-  
-    document.getElementById("welcomeName").innerText = studentName;
-
-    document.getElementById("topRoll").innerText =
-        studentName + " | Roll No: " + rollNo;
-
-    document.getElementById("profileName").innerText = studentName;
-
-    document.getElementById("profileRoll").innerText = rollNo;
-
-    document.getElementById("profileInitial").innerText =
-        studentName.charAt(0).toUpperCase();
-
-    // OPEN DASHBOARD
-    showPage("home", document.querySelector(".sidebar button"));
-}
-
-function logout() {
-
-    document.getElementById("mainWebsite").style.display = "none";
-
-    document.getElementById("loginScreen").style.display = "flex";
-
-    document.getElementById("loginRoll").value = "";
-
-    document.getElementById("loginPassword").value = "";
-
-}
-
-function showPage(pageId, button) {
-
-    let pages = document.querySelectorAll(".page");
-
-    pages.forEach(function(page) {
-        page.classList.remove("active");
-    });
-
-    document.getElementById(pageId).classList.add("active");
-
-    let buttons = document.querySelectorAll(".sidebar button");
-
-    buttons.forEach(function(btn) {
-        btn.classList.remove("active");
-    });
-
-    if (button) {
-        button.classList.add("active");
-    }
-
-}
-
-function addAssignment(event) {
-
-    event.preventDefault();
-
-    let assignment = document.getElementById("assignmentInput").value.trim();
-
-    if (assignment === "") {
-        return;
-    }
-
-    let li = document.createElement("li");
-
-    li.innerText = assignment;
-
-    document.getElementById("assignmentList").appendChild(li);
-
-    document.getElementById("assignmentInput").value = "";
-
-    let count = document.getElementById("assignmentList").children.length;
-
-    document.getElementById("assignmentCount").innerText = count;
-
-    alert("Assignment added successfully!");
-
-}
-
-function sendMessage(event) {
-
-    event.preventDefault();
-
-    alert("Your message has been submitted successfully!");
-
-    event.target.reset();
-
-}
-
-</script>
+</div>
 
 </body>
+
 </html>
